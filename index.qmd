@@ -1,0 +1,10 @@
+---
+title: "Welcome to My Portfolio"
+---
+
+Hi, I'm Haokang Chen! I'm a Data Science student passionate about machine learning and data visualization.
+
+## Featured Projects
+
+* [Customer Churn Prediction](./projects/churn_analysis.ipynb) - End-to-end ML pipeline built with Scikit-learn.
+* [Exploratory Analysis of Housing Data](./projects/housing_eda.qmd) - Interactive visualization using Plotly.

@@ -1,0 +1,23 @@
+project:
+  type: website
+  output-dir: _site
+
+website:
+  title: "Haokang Chen | Data Science Portfolio"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - href: projects.qmd
+        text: Projects
+      - href: about.qmd
+        text: About
+    right:
+      - icon: github
+        href: https://github.com/SrChen6
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: true
