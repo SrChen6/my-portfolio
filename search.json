@@ -4,7 +4,14 @@
     "href": "index.html",
     "title": "Welcome to My Portfolio",
     "section": "",
-    "text": "Hi, I’m Haokang Chen! I’m studying Physics Engineering and Data Science in CFIS. ## Featured Projects\n\nCustomer Churn Prediction - End-to-end ML pipeline built with Scikit-learn.\nExploratory Analysis of Housing Data - Interactive visualization using Plotly."
+    "text": "Hi, I’m Haokang Chen! I’m studying Physics Engineering and Data Science in CFIS."
+  },
+  {
+    "objectID": "index.html#featured-projects",
+    "href": "index.html#featured-projects",
+    "title": "Welcome to My Portfolio",
+    "section": "Featured Projects",
+    "text": "Featured Projects\n\nCustomer Churn Prediction - End-to-end ML pipeline built with Scikit-learn.\nExploratory Analysis of Housing Data - Interactive visualization using Plotly."
   },
   {
     "objectID": "about.html",
