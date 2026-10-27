@@ -4,7 +4,7 @@
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 /* ---------- Particle field (hero background) ----------
-   Particles drift and link up when close, like a little graph/network.
+   Sparse particles drift and link up when close, like a little graph/network.
    The cursor acts as a point charge: it attracts particles, and a click
    flips the sign so they're repelled instead. */
 (function particleField() {
@@ -13,7 +13,7 @@ const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matc
   const ctx = canvas.getContext("2d");
   const ACCENT = [255, 122, 26];
   const COOL = [76, 201, 240];
-  const LINK_DIST = 120;
+  const LINK_DIST = 110;
 
   let w, h, dpr, particles = [];
   const mouse = { x: -9999, y: -9999, charge: 1, active: false };
@@ -26,13 +26,13 @@ const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matc
     canvas.height = h * dpr;
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     // density scales with area, capped so phones stay smooth
-    const count = Math.min(140, Math.floor((w * h) / 9000));
+    const count = Math.min(70, Math.floor((w * h) / 18000));
     particles = Array.from({ length: count }, () => ({
       x: Math.random() * w,
       y: Math.random() * h,
-      vx: (Math.random() - 0.5) * 0.4,
-      vy: (Math.random() - 0.5) * 0.4,
-      r: Math.random() * 1.6 + 0.6,
+      vx: (Math.random() - 0.5) * 0.3,
+      vy: (Math.random() - 0.5) * 0.3,
+      r: Math.random() * 1.2 + 0.5,
     }));
   }
 
@@ -46,14 +46,14 @@ const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matc
         const dy = mouse.y - p.y;
         const d2 = dx * dx + dy * dy + 400; // softening avoids the 1/r² blow-up
         if (d2 < 220 * 220) {
-          const f = (mouse.charge * 60) / d2; // inverse-square force
+          const f = (mouse.charge * 40) / d2; // inverse-square force
           p.vx += f * dx;
           p.vy += f * dy;
         }
       }
       // gentle damping + random kick keeps the motion lively but bounded
-      p.vx = p.vx * 0.985 + (Math.random() - 0.5) * 0.02;
-      p.vy = p.vy * 0.985 + (Math.random() - 0.5) * 0.02;
+      p.vx = p.vx * 0.985 + (Math.random() - 0.5) * 0.015;
+      p.vy = p.vy * 0.985 + (Math.random() - 0.5) * 0.015;
       p.x += p.vx;
       p.y += p.vy;
       // wrap around the edges
@@ -66,10 +66,9 @@ const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matc
       const a = particles[i];
       for (let j = i + 1; j < particles.length; j++) {
         const b = particles[j];
-        const dx = a.x - b.x, dy = a.y - b.y;
-        const d = Math.hypot(dx, dy);
+        const d = Math.hypot(a.x - b.x, a.y - b.y);
         if (d < LINK_DIST) {
-          ctx.strokeStyle = `rgba(${col[0]},${col[1]},${col[2]},${(1 - d / LINK_DIST) * 0.25})`;
+          ctx.strokeStyle = `rgba(${col[0]},${col[1]},${col[2]},${(1 - d / LINK_DIST) * 0.12})`;
           ctx.lineWidth = 1;
           ctx.beginPath();
           ctx.moveTo(a.x, a.y);
@@ -80,7 +79,7 @@ const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matc
     }
 
     // the particles themselves
-    ctx.fillStyle = `rgba(${col[0]},${col[1]},${col[2]},0.85)`;
+    ctx.fillStyle = `rgba(${col[0]},${col[1]},${col[2]},0.45)`;
     for (const p of particles) {
       ctx.beginPath();
       ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
@@ -113,32 +112,6 @@ const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matc
   step();
 })();
 
-/* ---------- Typing effect for the role line ---------- */
-(function typing() {
-  const el = document.getElementById("typed");
-  if (!el) return;
-  const roles = [
-    "physics engineering student",
-    "data science student",
-    "machine learning tinkerer",
-    "electromagnetism enjoyer",
-    "turning data into pictures",
-  ];
-  if (reducedMotion) { el.textContent = roles[0]; return; }
-
-  let r = 0, i = 0, deleting = false;
-  function tick() {
-    const word = roles[r];
-    i += deleting ? -1 : 1;
-    el.textContent = word.slice(0, i);
-    let delay = deleting ? 35 : 70;
-    if (!deleting && i === word.length) { delay = 1600; deleting = true; }
-    else if (deleting && i === 0) { deleting = false; r = (r + 1) % roles.length; delay = 300; }
-    setTimeout(tick, delay);
-  }
-  tick();
-})();
-
 /* ---------- Navigation: scrolled style, active link, mobile menu ---------- */
 (function nav() {
   const nav = document.getElementById("nav");
@@ -169,70 +142,19 @@ const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matc
   document.querySelectorAll("section[id]").forEach((s) => spy.observe(s));
 })();
 
-/* ---------- Scroll reveal, skill bars and counters ---------- */
+/* ---------- Scroll reveal ---------- */
 (function reveal() {
-  const animateCount = (el) => {
-    const target = Number(el.dataset.count);
-    if (reducedMotion) { el.textContent = target; return; }
-    const start = performance.now();
-    const dur = 1200;
-    const frame = (t) => {
-      const k = Math.min(1, (t - start) / dur);
-      el.textContent = Math.round(target * (1 - Math.pow(1 - k, 3)));
-      if (k < 1) requestAnimationFrame(frame);
-    };
-    requestAnimationFrame(frame);
-  };
-
   const io = new IntersectionObserver((entries) => {
     for (const entry of entries) {
       if (!entry.isIntersecting) continue;
-      const el = entry.target;
-      el.classList.add("is-visible");
-      el.querySelectorAll(".bars li").forEach((li) => {
-        li.querySelector("i").style.setProperty("--level", li.dataset.level + "%");
-      });
-      el.querySelectorAll("[data-count]").forEach(animateCount);
-      io.unobserve(el);
+      entry.target.classList.add("is-visible");
+      io.unobserve(entry.target);
     }
   }, { threshold: 0.15 });
 
   document.querySelectorAll(".reveal").forEach((el, idx) => {
-    el.style.transitionDelay = `${(idx % 3) * 80}ms`; // small stagger inside rows
+    el.style.transitionDelay = `${(idx % 3) * 60}ms`; // small stagger inside rows
     io.observe(el);
-  });
-})();
-
-/* ---------- Project filters ---------- */
-(function filters() {
-  const chips = document.querySelectorAll(".chip");
-  const cards = document.querySelectorAll("#projectGrid .card");
-  chips.forEach((chip) => chip.addEventListener("click", () => {
-    chips.forEach((c) => c.classList.toggle("is-active", c === chip));
-    const f = chip.dataset.filter;
-    cards.forEach((card) => {
-      const show = f === "all" || card.dataset.tags.split(" ").includes(f);
-      card.classList.toggle("is-hidden", !show);
-    });
-  }));
-})();
-
-/* ---------- Card spotlight + subtle 3D tilt ---------- */
-(function cards() {
-  const canHover = window.matchMedia("(hover: hover)").matches;
-  document.querySelectorAll(".card").forEach((card) => {
-    card.addEventListener("pointermove", (e) => {
-      const rect = card.getBoundingClientRect();
-      const x = e.clientX - rect.left, y = e.clientY - rect.top;
-      card.style.setProperty("--mx", x + "px");
-      card.style.setProperty("--my", y + "px");
-      if (canHover && !reducedMotion) {
-        const rx = ((y / rect.height) - 0.5) * -6;
-        const ry = ((x / rect.width) - 0.5) * 6;
-        card.style.transform = `perspective(800px) rotateX(${rx}deg) rotateY(${ry}deg) translateY(-4px)`;
-      }
-    });
-    card.addEventListener("pointerleave", () => { card.style.transform = ""; });
   });
 })();
 

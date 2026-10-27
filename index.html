@@ -8,13 +8,13 @@
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <!-- ===== Navigation ===== -->
   <header class="nav" id="nav">
-    <a class="nav__logo" href="#top">h<span>c</span>.</a>
+    <a class="nav__logo" href="#top">Haokang Chen</a>
     <button class="nav__toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">
       <span></span><span></span>
     </button>
@@ -24,24 +24,17 @@
       <a href="#skills">Skills</a>
       <a href="#hobbies">Hobbies</a>
       <a href="#contact">Contact</a>
-      <a class="nav__icon" href="https://github.com/SrChen6" target="_blank" rel="noopener" aria-label="GitHub">
-        <svg viewBox="0 0 16 16" width="20" height="20" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
-      </a>
     </nav>
   </header>
 
   <main id="top">
-    <!-- ===== Hero with interactive particle field ===== -->
+    <!-- ===== Hero with subtle particle field ===== -->
     <section class="hero">
       <canvas id="field" aria-hidden="true"></canvas>
       <div class="hero__content">
-        <p class="mono hero__hello">&gt; hello, world</p>
-        <h1>Haokang <span class="accent">Chen</span></h1>
-        <p class="hero__role mono">
-          <span id="typed"></span><span class="cursor">▍</span>
-        </p>
+        <p class="eyebrow"><span>Physics Engineering &amp; Data Science</span> · <span>CFIS — UPC</span></p>
+        <h1>Haokang Chen</h1>
         <p class="hero__lead">
-          Physics Engineering &amp; Data Science student at <strong>CFIS — UPC</strong>, Barcelona.
           I like turning equations and messy data into things you can see and play with.
         </p>
         <div class="hero__cta">
@@ -49,13 +42,11 @@
           <a class="btn btn--ghost" href="#contact">Get in touch</a>
         </div>
       </div>
-      <p class="hero__hint mono">move your cursor — the particles feel it · click to flip the charge</p>
-      <a class="hero__scroll" href="#about" aria-label="Scroll down"></a>
     </section>
 
     <!-- ===== About ===== -->
     <section class="section" id="about">
-      <h2 class="section__title reveal"><span class="mono">01.</span> About me</h2>
+      <h2 class="section__title reveal">About</h2>
       <div class="about reveal">
         <div class="about__text">
           <p>
@@ -69,103 +60,71 @@
           </p>
           <!-- TODO: add a sentence about what you're looking for (internships, research, ...) -->
         </div>
-        <ul class="stats">
-          <li><span class="stats__num" data-count="2">0</span><span class="stats__label">degrees, one programme</span></li>
-          <li><span class="stats__num" data-count="7">0</span><span class="stats__label">semesters in</span></li>
-          <li><span class="stats__num" data-count="2">0</span><span class="stats__label">projects (and counting)</span></li>
-        </ul>
+        <dl class="facts">
+          <div><dt>Programme</dt><dd>CFIS double degree, UPC</dd></div>
+          <div><dt>Degrees</dt><dd>Physics Engineering · Data Science</dd></div>
+          <div><dt>Based in</dt><dd>Barcelona</dd></div>
+        </dl>
       </div>
     </section>
 
     <!-- ===== Projects ===== -->
     <section class="section" id="projects">
-      <h2 class="section__title reveal"><span class="mono">02.</span> Projects</h2>
-      <div class="filters reveal" role="tablist" aria-label="Filter projects">
-        <button class="chip is-active" data-filter="all">All</button>
-        <button class="chip" data-filter="ml">Machine learning</button>
-        <button class="chip" data-filter="viz">Visualization</button>
-        <button class="chip" data-filter="physics">Physics</button>
-      </div>
-      <div class="grid" id="projectGrid">
-        <article class="card reveal" data-tags="ml">
-          <div class="card__top">
-            <span class="card__icon">◎</span>
-            <a class="card__link" href="https://github.com/SrChen6" target="_blank" rel="noopener" aria-label="Source code">↗</a>
-          </div>
-          <h3>Customer Churn Prediction</h3>
+      <h2 class="section__title reveal">Projects</h2>
+      <!-- To add a project, copy one of the <article class="card"> blocks -->
+      <div class="grid">
+        <a class="card reveal" href="https://github.com/SrChen6" target="_blank" rel="noopener">
+          <h3>Customer Churn Prediction <span class="card__arrow" aria-hidden="true">↗</span></h3>
           <p>End-to-end ML pipeline: feature engineering, model selection and evaluation to predict which customers will leave.</p>
-          <ul class="tags mono"><li>Python</li><li>scikit-learn</li><li>pandas</li></ul>
-        </article>
+          <ul class="tags"><li>Python</li><li>scikit-learn</li><li>pandas</li></ul>
+        </a>
 
-        <article class="card reveal" data-tags="viz">
-          <div class="card__top">
-            <span class="card__icon">▦</span>
-            <a class="card__link" href="https://github.com/SrChen6" target="_blank" rel="noopener" aria-label="Source code">↗</a>
-          </div>
-          <h3>Housing Data EDA</h3>
+        <a class="card reveal" href="https://github.com/SrChen6" target="_blank" rel="noopener">
+          <h3>Housing Data EDA <span class="card__arrow" aria-hidden="true">↗</span></h3>
           <p>Exploratory analysis of housing prices with interactive Plotly visualizations to surface what really drives value.</p>
-          <ul class="tags mono"><li>Python</li><li>Plotly</li><li>EDA</li></ul>
-        </article>
+          <ul class="tags"><li>Python</li><li>Plotly</li><li>EDA</li></ul>
+        </a>
 
-        <article class="card card--placeholder reveal" data-tags="physics">
-          <div class="card__top">
-            <span class="card__icon">∿</span>
-          </div>
-          <h3>Your next project</h3>
-          <p>
-            Placeholder — e.g. a transmission-line or optics simulation. Copy one of the
-            <code>&lt;article class="card"&gt;</code> blocks in <code>index.html</code> to add a project.
-          </p>
-          <ul class="tags mono"><li>coming soon</li></ul>
+        <article class="card card--placeholder reveal">
+          <h3>More coming soon</h3>
+          <p>Next up: a transmission-line or optics simulation.</p>
         </article>
       </div>
     </section>
 
     <!-- ===== Skills ===== -->
     <section class="section" id="skills">
-      <h2 class="section__title reveal"><span class="mono">03.</span> Skills</h2>
-      <div class="skills">
-        <div class="skills__group reveal">
-          <h3 class="mono">// programming</h3>
-          <ul class="bars">
-            <!-- data-level is 0–100: edit to taste -->
-            <li data-level="85"><span>Python</span><i></i></li>
-            <li data-level="70"><span>C++</span><i></i></li>
-            <li data-level="60"><span>SQL</span><i></i></li>
-            <li data-level="55"><span>MATLAB</span><i></i></li>
-          </ul>
+      <h2 class="section__title reveal">Skills</h2>
+      <div class="skills reveal">
+        <div>
+          <h3>Programming</h3>
+          <p>Python, C++, SQL, MATLAB</p>
         </div>
-        <div class="skills__group reveal">
-          <h3 class="mono">// data &amp; ML</h3>
-          <ul class="pills">
-            <li>NumPy</li><li>pandas</li><li>scikit-learn</li><li>PyTorch</li>
-            <li>Plotly</li><li>Matplotlib</li><li>OpenCV</li><li>Jupyter</li>
-          </ul>
+        <div>
+          <h3>Data &amp; ML</h3>
+          <p>NumPy, pandas, scikit-learn, PyTorch, Plotly, Matplotlib, OpenCV, Jupyter</p>
         </div>
-        <div class="skills__group reveal">
-          <h3 class="mono">// physics &amp; tools</h3>
-          <ul class="pills">
-            <li>Electromagnetism</li><li>Optics</li><li>Numerical methods</li>
-            <li>LaTeX / Typst</li><li>Git</li><li>Linux</li><li>Quarto</li>
-          </ul>
+        <div>
+          <h3>Physics &amp; tools</h3>
+          <p>Electromagnetism, optics, numerical methods, LaTeX / Typst, Git, Linux, Quarto</p>
         </div>
       </div>
     </section>
 
     <!-- ===== Hobbies ===== -->
     <section class="section" id="hobbies">
-      <h2 class="section__title reveal"><span class="mono">04.</span> Off the clock</h2>
+      <h2 class="section__title reveal">Off the clock</h2>
       <!-- TODO: replace these with your real hobbies -->
-      <div class="hobbies">
-        <div class="hobby reveal"><span class="hobby__emoji">📚</span><h3>Hobby one</h3><p>Write a line about it.</p></div>
-        <div class="hobby reveal"><span class="hobby__emoji">🎧</span><h3>Hobby two</h3><p>Write a line about it.</p></div>
-        <div class="hobby reveal"><span class="hobby__emoji">🏃</span><h3>Hobby three</h3><p>Write a line about it.</p></div>
+      <div class="skills reveal">
+        <div><h3>Hobby one</h3><p>Write a line about it.</p></div>
+        <div><h3>Hobby two</h3><p>Write a line about it.</p></div>
+        <div><h3>Hobby three</h3><p>Write a line about it.</p></div>
       </div>
     </section>
 
     <!-- ===== Contact ===== -->
     <section class="section section--contact" id="contact">
-      <h2 class="section__title reveal"><span class="mono">05.</span> Let's talk</h2>
+      <h2 class="section__title reveal">Let's talk</h2>
       <p class="contact__lead reveal">
         Open to internships, research collaborations, or just a chat about physics and data.
       </p>
@@ -178,9 +137,8 @@
     </section>
   </main>
 
-  <footer class="footer mono">
+  <footer class="footer">
     <span>© <span id="year"></span> Haokang Chen</span>
-    <span>hand-built with HTML · CSS · JS</span>
   </footer>
 
   <script src="script.js"></script>
