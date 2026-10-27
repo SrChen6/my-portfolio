@@ -1,0 +1,37 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Welcome to My Portfolio",
+    "section": "",
+    "text": "Hi, I’m Haokang Chen! I’m studying Physics Engineering and Data Science in CFIS."
+  },
+  {
+    "objectID": "index.html#featured-projects",
+    "href": "index.html#featured-projects",
+    "title": "Welcome to My Portfolio",
+    "section": "Featured Projects",
+    "text": "Featured Projects\n\nCustomer Churn Prediction - End-to-end ML pipeline built with Scikit-learn.\nExploratory Analysis of Housing Data - Interactive visualization using Plotly."
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this site"
+  },
+  {
+    "objectID": "index.html#hobbies",
+    "href": "index.html#hobbies",
+    "title": "Welcome to My Portfolio",
+    "section": "Hobbies",
+    "text": "Hobbies"
+  },
+  {
+    "objectID": "index.html#skills",
+    "href": "index.html#skills",
+    "title": "Welcome to My Portfolio",
+    "section": "Skills",
+    "text": "Skills\n\nProgramming:"
+  }
+]

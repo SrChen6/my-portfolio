@@ -5,6 +5,8 @@ project:
 website:
   title: "Haokang Chen | Data Science Portfolio"
   navbar:
+    background: "#c45506"  # Set to your preferred orange hex color
+    foreground: "#ffffff"  # Ensures the text/icons stay white
     left:
       - href: index.qmd
         text: Home
@@ -18,6 +20,6 @@ website:
 
 format:
   html:
-    theme: cosmo
+    theme: darkly
     css: styles.css
     toc: true
