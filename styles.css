@@ -1,11 +1,17 @@
 /* ============ Design tokens ============ */
 :root {
-  --bg: #0c0e13;
-  --surface: #13161d;
-  --border: #22262f;
-  --text: #e8eaef;
-  --muted: #8c93a3;
-  --accent: #ff7a1a;        /* brighter cousin of the old #c45506 navbar */
+  /* "Midnight & ember": navy ink instead of pure black, a softer amber,
+     and a cool sky blue as a second accent so it's never just black + orange */
+  --bg: #0e1424;
+  --surface: #151d31;
+  --border: #253049;
+  --text: #ecebe7;
+  --muted: #96a0b5;
+  --accent: #f59a4a;
+  --accent-hover: #ffb068;
+  --cool: #7cc8f0;
+  --cool-rgb: 124, 200, 240;
+  --nav-bg: rgba(14, 20, 36, .85);
   --radius: 10px;
   --maxw: 960px;
   --gutter: clamp(16px, 5vw, 48px);
@@ -24,7 +30,7 @@ body {
 }
 a { color: inherit; text-decoration: none; }
 img { max-width: 100%; }
-::selection { background: var(--accent); color: #000; }
+::selection { background: var(--accent); color: var(--bg); }
 
 /* ============ Navigation ============ */
 .nav {
@@ -35,7 +41,7 @@ img { max-width: 100%; }
   border-bottom: 1px solid transparent;
 }
 .nav.is-scrolled {
-  background: rgba(12, 14, 19, .85);
+  background: var(--nav-bg);
   backdrop-filter: blur(10px);
   border-bottom-color: var(--border);
 }
@@ -55,7 +61,7 @@ img { max-width: 100%; }
   .nav__toggle[aria-expanded="true"] span:last-child { transform: translateY(-4px) rotate(-45deg); }
   .nav__links {
     position: fixed; inset: 0; flex-direction: column; justify-content: center;
-    gap: 28px; font-size: 1.2rem; background: rgba(12, 14, 19, .98);
+    gap: 28px; font-size: 1.2rem; background: rgba(14, 20, 36, .98);
     opacity: 0; pointer-events: none; transition: opacity .3s;
   }
   .nav__links.is-open { opacity: 1; pointer-events: auto; }
@@ -67,6 +73,9 @@ img { max-width: 100%; }
   display: grid; place-items: center;
   padding: 120px var(--gutter) 80px;
   overflow: hidden;
+  background:
+    radial-gradient(ellipse 60% 50% at 85% 15%, rgba(var(--cool-rgb), .09), transparent 70%),
+    radial-gradient(ellipse 50% 45% at 10% 90%, rgba(245, 154, 74, .08), transparent 70%);
 }
 #field { position: absolute; inset: 0; width: 100%; height: 100%; }
 .hero__content { position: relative; max-width: calc(var(--maxw) - 2 * var(--gutter)); width: 100%; pointer-events: none; }
@@ -85,10 +94,10 @@ img { max-width: 100%; }
   display: inline-block; padding: 11px 22px; border-radius: 8px;
   font-weight: 500; font-size: .92rem; transition: background .2s, border-color .2s, color .2s;
 }
-.btn--primary { background: var(--accent); color: #111; }
-.btn--primary:hover { background: #ff8f40; }
+.btn--primary { background: var(--accent); color: var(--bg); }
+.btn--primary:hover { background: var(--accent-hover); }
 .btn--ghost { border: 1px solid var(--border); color: var(--text); }
-.btn--ghost:hover { border-color: var(--muted); }
+.btn--ghost:hover { border-color: var(--cool); color: var(--cool); }
 
 /* ============ Sections ============ */
 .section {
@@ -110,7 +119,7 @@ img { max-width: 100%; }
 .about__text p { color: var(--muted); margin: 0 0 16px; }
 .about__text strong { color: var(--text); font-weight: 500; }
 .facts { margin: 0; display: grid; gap: 20px; align-content: start; }
-.facts dt { font-size: .8rem; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; }
+.facts dt { font-size: .8rem; color: var(--cool); text-transform: uppercase; letter-spacing: .06em; }
 .facts dd { margin: 2px 0 0; }
 @media (max-width: 800px) { .about { grid-template-columns: 1fr; gap: 36px; } }
 
@@ -121,7 +130,7 @@ img { max-width: 100%; }
   background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
   padding: 24px; transition: border-color .2s;
 }
-a.card:hover { border-color: var(--muted); }
+a.card:hover { border-color: rgba(var(--cool-rgb), .45); }
 .card h3 { margin: 0 0 10px; font-size: 1.08rem; font-weight: 600; display: flex; justify-content: space-between; gap: 12px; }
 .card__arrow { color: var(--muted); transition: color .2s; }
 a.card:hover .card__arrow { color: var(--accent); }
@@ -129,7 +138,7 @@ a.card:hover .card__arrow { color: var(--accent); }
 .card--placeholder { border-style: dashed; background: transparent; }
 .card--placeholder p { margin: 0; }
 .tags { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 6px; font-size: .78rem; }
-.tags li { color: var(--muted); border: 1px solid var(--border); border-radius: 6px; padding: 2px 9px; }
+.tags li { color: var(--cool); background: rgba(var(--cool-rgb), .07); border: 1px solid rgba(var(--cool-rgb), .2); border-radius: 6px; padding: 2px 9px; }
 
 /* ============ Skills & hobbies ============ */
 .skills { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 36px; }

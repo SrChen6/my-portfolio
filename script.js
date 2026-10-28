@@ -11,8 +11,8 @@ const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matc
   const canvas = document.getElementById("field");
   if (!canvas) return;
   const ctx = canvas.getContext("2d");
-  const ACCENT = [255, 122, 26];
-  const COOL = [76, 201, 240];
+  const ACCENT = [245, 154, 74];
+  const COOL = [124, 200, 240];
   const LINK_DIST = 110;
 
   let w, h, dpr, particles = [];
